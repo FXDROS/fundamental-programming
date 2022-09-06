@@ -8,4 +8,5 @@ This application is a more interactive version of CLI Budaya KB and more user fr
 4. Once the installation complete, run `py budayakb_controller.py` for Windows, or `python3 budayakb_controller.py` for macOS. <br>
 ![](./Screenshots/run.png)
 5. Open your browser and go to `127.0.0.1:5000` or `localhost:5000` to see the web page. <br>
-![](./Screenshots/web%20page.png)
+![](./Screenshots/web%20page.png)<br>
+![](./Screenshots/web%20page%202.png)
