@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+        body {
+            margin: 0;
+        }
+
+        .topnav {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: table;
+            clear: both;
+            content: none;
+            position: fixed;
+            z-index: 1;
+        }
+
+        .topnav a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bolder;
+            font-size: 150%;
+            color: white;
+            text-decoration: none;
+            padding-left: 15px;
+            padding-right: 15px;
+            display: block;
+        }
+
+        .topnav :hover {
+            color: black;
+            background-color: rgba(225, 225, 225, 1);
+        }
+
+        .title a {
+            float: left;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .menu a {
+            float: right;
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+        #myvideo {
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            position: fixed;
+        }
+
+        .content {
+            color: white;
+            font-family: 'Rubik', sans-serif;
+            font-size: 125%;
+            font-weight: 600;
+        }
+
+        .tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 200%;
+            font-weight: 600;
+            color: white;
+            padding-bottom: 3%;
+            text-align: center;
+        }
+
+        .formInput {
+            position: fixed;
+            max-height: 200px;
+            width: 800px;
+            bottom: 25%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 3%;
+            padding-top: 2%;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -400px;
+        }
+
+        .fileInput {
+            padding-top: 2%;
+            padding-bottom: 2%;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0.5;
+            background-color: black;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Budaya KB | Impor Budaya</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <div class="title">
+            <a href=home>Budaya KB</a>
+        </div>
+        <div class="menu">
+            <a href=statistikBudaya style="padding-right: 15px">Statisik Budaya</a>
+            <a href=cariBudaya>Cari Budaya</a>
+            <a href=suntingBudaya>Sunting Budaya</a>
+            <a href=imporBudaya>Impor Budaya</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="background">
+            <video autoplay muted loop id="myvideo">
+                <source src="{{url_for('static', filename='image/TP4.mov')}}" type="video/mp4">
+            </video>
+            <div class="overlay"></div>
+        </div>
+        <div class="formInput" style="max-height: 100%;">
+            <form method="POST" ,action="" enctype="multipart/form-data">
+                <div class="tag">
+                    Pilih File CSV Berisi Budaya Indonesia
+                </div>
+                <input type="file" name="file" required class="fileInput"
+                    style="width: 96%; border-radius: 4px; cursor: pointer; border: none; padding: 1% 2%; background-color: white; color: black; font-family: 'Montserrat',sans-serif; font-size: 90%; font-weight: 300;">
+                <input type="submit" value="Impor Budaya"
+                    style="width: 100%; border-radius: 4px; cursor: pointer; border: none; padding: 1% 2%; margin: 3% 0; background-color: white; color: black; font-family: 'Montserrat',sans-serif; font-size: 90%; font-weight: 300;">
+            </form>
+
+            {% if result is defined and result >0: %}
+            <h3>Sebanyak {% print result %} data budaya telah terimpor dari file <i> {{filename}} </i></h3>
+
+            {% elif result is defined and result == 0 %}
+            <h3>Tidak ada data yang diimpor dari file <i> {{filename}} </i> atau file tidak ditemukan</h3>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+
+</html>

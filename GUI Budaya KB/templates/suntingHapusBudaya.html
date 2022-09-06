@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+        body {
+            margin: 0%;
+        }
+
+        .topnav {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: table;
+            clear: both;
+            content: none;
+            position: fixed;
+            z-index: 1;
+        }
+
+        .topnav a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bolder;
+            font-size: 150%;
+            color: white;
+            text-decoration: none;
+            padding-left: 15px;
+            padding-right: 15px;
+            display: block;
+        }
+
+        .topnav :hover {
+            color: black;
+            background-color: rgba(225, 225, 225, 1);
+        }
+
+        .title a {
+            float: left;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .menu a {
+            float: right;
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+        #myvideo {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .formInput {
+            width: 950px;
+            max-height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 3%;
+            padding-top: 2%;
+            z-index: 1;
+            color: white;
+            font-family: 'Rubik', sans-serif;
+            font-size: 125%;
+            font-weight: 600;
+            margin-top: 15%;
+            margin-left: 20%;
+            margin-bottom: 5%;
+            position: fixed;
+        }
+
+        .tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 200%;
+            color: white;
+            padding-bottom: 3%;
+        }
+
+        .suntingHapus {
+            color: black;
+            width: 70%;
+            float: left;
+            left: 5%;
+        }
+
+        .tombolHapus {
+            width: 25%;
+            float: left;
+            margin-left: 5%;
+            margin-top: -0.5%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Budaya KB | Hapus Budaya</title>
+</head>
+
+<body>
+    <div class="topnav" id="top">
+        <div class="title">
+            <a href=home>Budaya KB</a>
+        </div>
+        <div class="menu">
+            <a href=statistikBudaya style="padding-right: 15px">Statisik Budaya</a>
+            <a href=cariBudaya>Cari Budaya</a>
+            <a href=suntingBudaya>Sunting Budaya</a>
+            <a href=imporBudaya>Impor Budaya</a>
+        </div>
+    </div>
+    <div class="content">
+        <video autoplay muted loop id="myvideo">
+            <source src="{{url_for('static', filename = 'image/TP4.3.mov')}}">
+        </video>
+        <div class="overlay"></div>
+        <div class="formInput">
+            <form method="POST" , action="">
+                <div class="tag">
+                    Masukan Nama Budaya yang Akan Dihapus
+                </div>
+                <div class="formEnter" style="padding-bottom: 5%">
+                    <div class="suntingHapus">
+                        <input type="text" placeholder="Nama Budaya" name=nama required
+                            style="width: 100%;font-size: 100%;padding: 1%;font-family: 'Rubik',sans-serif;">
+                    </div>
+                    <div class="tombolHapus">
+                        <input type=submit value="Hapus"
+                            style="width: 100%; border-radius: 4px; cursor: pointer; border: none; padding: 3% 2%; margin: 3% 0; background-color: white; color: black; font-family: 'Montserrat',sans-serif; font-size: 90%; font-weight: 300;">
+                    </div>
+                </div>
+            </form>
+            {% if result is defined and result == 1 %}
+            <h4>{{nama}} berhasil dihapus dari data budaya</h4>
+            {% elif result is defined and result == 0 %}
+            <h4>Tidak ada data yang dihapus, {{nama}} tidak ditemukan</h4>
+            {% endif %}
+        </div>
+    </div>
+</body>
